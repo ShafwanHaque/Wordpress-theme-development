@@ -37,6 +37,13 @@ define( 'DB_CHARSET', 'utf8mb4' );
 /** The database collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
 
+define('FS_METHOD', 'direct');
+define('FTP_HOST', 'localhost'); // Use 'localhost' for local installations
+define('FTP_USER', 'pl_shop'); // Your FTP username
+define('FTP_PASS', '12345678'); // Your FTP password
+define('FTP_SSL', false); // Set to true if using SSL
+define('WP_CONTENT_DIR', '/var/www/html/pl_shop/wordpress/wp-content');
+
 /**#@+
  * Authentication unique keys and salts.
  *

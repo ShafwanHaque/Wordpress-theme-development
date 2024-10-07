@@ -69,8 +69,12 @@ function render_block_core_latest_posts( $attributes ) {
 	$list_items_markup = '';
 
 	foreach ( $recent_posts as $post ) {
+		$post_id = get_the_ID();
 		$post_link = esc_url( get_permalink( $post ) );
 		$title     = get_the_title( $post );
+		$comment_count     = get_comment_count( $post_id )['total_comments'];
+		// print_r($comment_count);
+		// exit;
 
 		if ( ! $title ) {
 			$title = __( '(no title)' );
@@ -117,7 +121,7 @@ function render_block_core_latest_posts( $attributes ) {
 		$list_items_markup .= sprintf(
 			'<a class="wp-block-latest-posts__post-title" href="%1$s">%2$s</a>',
 			esc_url( $post_link ),
-			$title
+			$title . $comment_count 
 		);
 
 		if ( isset( $attributes['displayAuthor'] ) && $attributes['displayAuthor'] ) {

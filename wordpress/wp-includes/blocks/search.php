@@ -53,7 +53,7 @@ function render_block_core_search( $attributes ) {
 	$label            = new WP_HTML_Tag_Processor( sprintf( '<label %1$s>%2$s</label>', $inline_styles['label'], $label_inner_html ) );
 	if ( $label->next_tag() ) {
 		$label->set_attribute( 'for', $input_id );
-		$label->add_class( 'wp-block-search__label' );
+		$label->add_class( 'wp-block-search__label custom_wp-block-search__label' );
 		if ( $show_label && ! empty( $attributes['label'] ) ) {
 			if ( ! empty( $typography_classes ) ) {
 				$label->add_class( $typography_classes );
@@ -62,6 +62,7 @@ function render_block_core_search( $attributes ) {
 			$label->add_class( 'screen-reader-text' );
 		}
 	}
+
 
 	$input         = new WP_HTML_Tag_Processor( sprintf( '<input type="search" name="s" required %s/>', $inline_styles['input'] ) );
 	$input_classes = array( 'wp-block-search__input' );
@@ -114,7 +115,7 @@ function render_block_core_search( $attributes ) {
 	}
 
 	if ( $show_button ) {
-		$button_classes         = array( 'wp-block-search__button' );
+		$button_classes         = array( 'wp-block-search__button custom_wp-block-search__button' );
 		$button_internal_markup = '';
 		if ( ! empty( $color_classes ) ) {
 			$button_classes[] = $color_classes;
@@ -126,7 +127,7 @@ function render_block_core_search( $attributes ) {
 		if ( ! $is_button_inside && ! empty( $border_color_classes ) ) {
 			$button_classes[] = $border_color_classes;
 		}
-		if ( ! $use_icon_button ) {
+		if ( $use_icon_button ) {
 			if ( ! empty( $attributes['buttonText'] ) ) {
 				$button_internal_markup = wp_kses_post( $attributes['buttonText'] );
 			}
@@ -165,10 +166,10 @@ function render_block_core_search( $attributes ) {
 
 	$field_markup_classes = $is_button_inside ? $border_color_classes : '';
 	$field_markup         = sprintf(
-		'<div class="wp-block-search__inside-wrapper %s" %s>%s</div>',
+		'<div class="wp-block-search__inside-wrapper %s custom_wp-block-search__inside-wrapper " %s>%s</div>',
 		esc_attr( $field_markup_classes ),
 		$inline_styles['wrapper'],
-		$input . $query_params_markup . $button
+		$input . $query_params_markup . $button 
 	);
 	$wrapper_attributes   = get_block_wrapper_attributes(
 		array( 'class' => $classnames )
